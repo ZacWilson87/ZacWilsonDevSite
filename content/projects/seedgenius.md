@@ -2,20 +2,15 @@
 title: SeedGenius
 date: 2025-08-12
 status: Open Source
-tags: [go, ai, devtools]
+tags: [Go, AI, Devtools]
 ---
 
-An AI-powered development tool for generating seed data.
+## Case Study
 
-## Overview
+<!-- this should point back to our own /content/case-studies/seedgenius.go -->
 
-SeedGenius streamlines the process of creating realistic test data for development and testing environments.
+[SeedGenius Case Study](/case-studies/seedgenius)
 
-## Key Features
-
-- Intelligent schema detection
-- Context-aware data generation
-- Multiple output formats
-- CI/CD integration
+## Open Source Code
 
 [View on GitHub](https://github.com/ZacWilson87/SeedGeniusCLI)
