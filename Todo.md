@@ -5,9 +5,10 @@ Working task board for this project.
 ## In Progress
 
 ## Up Next
-- [ ] Draft homepage copy
 
 ## Completed
+
+- [x] Add meta description tags to all page templates
 
 - [x] SeedGenius case study content
 - [x] Markdown-to-HTML rendering (goldmark)

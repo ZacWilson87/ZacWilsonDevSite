@@ -1,18 +1,138 @@
-{{template "layout" .}}
-
-{{define "title"}}About{{end}}
-
-{{define "content"}}
-<section class="page-header">
+{{template "layout" .}} {{define "title"}}About — Zac Wilson{{end}} {{define
+"description"}}Learn more about Zac Wilson, a Senior Software Engineer
+specializing in full-stack development and tooling.{{end}} {{define "content"}}
+<section class="about-hero">
     <div class="container">
-        <h1>About</h1>
+        <div class="about-hero-grid">
+            <div class="about-hero-main">
+                <span class="hero-label anim-fade" style="--delay: 0">About</span>
+                <h1 class="about-name anim-fade" style="--delay: 1">Zac Wilson</h1>
+                <p class="about-role anim-fade" style="--delay: 2">
+                    Senior Software Engineer
+                </p>
+            </div>
+            <div class="about-hero-aside anim-fade" style="--delay: 3">
+                <blockquote class="about-quote">
+                    "I'd rather ship something useful than architect something perfect."
+                </blockquote>
+            </div>
+        </div>
     </div>
 </section>
 
-<section class="about-content">
+<section class="about-bio anim-fade" style="--delay: 4">
     <div class="container">
-        <p>Senior software engineer focused on building reliable, maintainable systems.</p>
-        <p>I value pragmatism over dogma, clarity over cleverness, and shipping over perfection.</p>
+        <div class="bio-grid">
+            <div class="bio-main">
+                <p class="bio-lede">
+                    I build full-stack systems, robust APIs, and tooling. 5 years in, I'm
+                    still most excited by the moment when messy requirements become
+                    working software.
+                </p>
+
+                <p>
+                    My path wasn't linear. Bootcamp graduate. Started by initially
+                    favoring frontend work (I blame my design background), moved into
+                    full-stack roles, eventually found my footing in backend and
+                    infrastructure. Each step taught me something about what actually
+                    matters: reliability over cleverness, clarity over abstraction,
+                    momentum over perfection.
+                </p>
+
+                <p>
+                    These days I work primarily in Go, Python, and TypeScript. I've built
+                    payment systems, real-time data pipelines, CLI tools, and more
+                    internal dashboards than I can count. The common thread is always the
+                    same: understand the problem deeply, then build the simplest thing
+                    that solves it.
+                </p>
+            </div>
+            <aside class="bio-sidebar">
+                <div class="bio-fact">
+                    <span class="bio-fact-label">Based in</span>
+                    <span class="bio-fact-value">United States</span>
+                </div>
+                <div class="bio-fact">
+                    <span class="bio-fact-label">Experience</span>
+                    <span class="bio-fact-value">5+ years</span>
+                </div>
+                <div class="bio-fact">
+                    <span class="bio-fact-label">Focus</span>
+                    <span class="bio-fact-value">Full-Stack, Tooling</span>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+
+<section class="about-stack anim-fade" style="--delay: 5">
+    <div class="container">
+        <h2 class="section-label">Tools & Technologies</h2>
+        <div class="stack-grid">
+            <div class="stack-category">
+                <h3>Languages</h3>
+                <ul>
+                    <li>Go</li>
+                    <li>Python</li>
+                    <li>TypeScript</li>
+                    <li>SQL</li>
+                </ul>
+            </div>
+            <div class="stack-category">
+                <h3>Infrastructure</h3>
+                <ul>
+                    <li>PostgreSQL</li>
+                    <li>Redis</li>
+                    <li>Docker</li>
+                    <li>AWS / GCP</li>
+                </ul>
+            </div>
+            <div class="stack-category">
+                <h3>Practices</h3>
+                <ul>
+                    <li>API Design</li>
+                    <li>System Architecture</li>
+                    <li>Code Review</li>
+                    <li>Technical Writing</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about-values anim-fade" style="--delay: 6">
+    <div class="container">
+        <h2 class="section-label">How I Work</h2>
+        <div class="values-list">
+            <article class="value-item">
+                <h3>Ship, then iterate</h3>
+                <p>
+                    Working software beats theoretical perfection. Get something in front
+                    of users, learn from reality, improve from there.
+                </p>
+            </article>
+            <article class="value-item">
+                <h3>Clarity over cleverness</h3>
+                <p>
+                    Code is read far more than it's written. I optimize for the next
+                    person—often future me—who needs to understand it.
+                </p>
+            </article>
+            <article class="value-item">
+                <h3>Constraints breed creativity</h3>
+                <p>
+                    Limitations aren't obstacles. They're the boundaries that force better
+                    solutions.
+                </p>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="about-cta anim-fade" style="--delay: 7">
+    <div class="container">
+        <p class="cta-text">Have a project in mind?</p>
+        <a href="/contact" class="btn-primary">Get in Touch</a>
     </div>
 </section>
 {{end}}
