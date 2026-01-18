@@ -1,0 +1,10 @@
+module devsite
+
+go 1.22
+
+require (
+	github.com/go-chi/chi/v5 v5.0.12
+	gopkg.in/yaml.v3 v3.0.1
+)
+
+require github.com/yuin/goldmark v1.7.16 // indirect
