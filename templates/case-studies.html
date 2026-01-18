@@ -1,0 +1,24 @@
+{{template "layout" .}}
+
+{{define "title"}}Case Studies{{end}}
+
+{{define "content"}}
+<section class="page-header">
+    <div class="container">
+        <h1>Case Studies</h1>
+        <p>In-depth looks at selected projects.</p>
+    </div>
+</section>
+
+<section class="case-studies">
+    <div class="container">
+        {{range .CaseStudies}}
+        <article class="case-study-card">
+            <h2><a href="/case-studies/{{.Slug}}">{{.Title}}</a></h2>
+        </article>
+        {{else}}
+        <p>Case studies coming soon.</p>
+        {{end}}
+    </div>
+</section>
+{{end}}

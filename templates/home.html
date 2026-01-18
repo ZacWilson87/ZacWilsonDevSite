@@ -1,0 +1,62 @@
+{{template "layout" .}}
+
+{{define "title"}}Zac W — Software Engineer{{end}}
+
+{{define "content"}}
+<section class="home-hero">
+    <div class="container">
+        <div class="hero-grid">
+            <div class="hero-main">
+                <span class="hero-label anim-fade" style="--delay: 0">Software Engineer</span>
+                <h1 class="hero-title anim-fade" style="--delay: 1">
+                    <span class="hero-line">Building systems</span>
+                    <span class="hero-line">that <em>work</em>.</span>
+                </h1>
+            </div>
+            <div class="hero-aside anim-fade" style="--delay: 2">
+                <p>Pragmatic solutions over clever abstractions. Clear code over complex architecture. Shipping over theorizing.</p>
+                <div class="hero-cta">
+                    <a href="/work" class="btn-primary">View Work</a>
+                    <a href="/about" class="btn-ghost">About Me</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-accent anim-expand"></div>
+    </div>
+</section>
+
+<section class="home-intro anim-fade" style="--delay: 3">
+    <div class="container">
+        <div class="intro-content">
+            <h2 class="section-label">What I Do</h2>
+            <p class="intro-text">I design and build backend systems, APIs, and infrastructure. Twelve years of turning ambiguous requirements into reliable software—mostly in Go, Python, and TypeScript.</p>
+        </div>
+    </div>
+</section>
+
+<section class="home-work anim-fade" style="--delay: 4">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-label">Selected Work</h2>
+            <a href="/work" class="section-link">View all →</a>
+        </div>
+        <div class="work-preview">
+            {{range $i, $p := .FeaturedProjects}}
+            <article class="work-preview-item">
+                <span class="work-number">0{{add $i 1}}</span>
+                <div class="work-preview-content">
+                    <h3><a href="/work/{{$p.Slug}}">{{$p.Title}}</a></h3>
+                    {{if $p.Tags}}
+                    <ul class="work-tags">
+                        {{range $p.Tags}}<li>{{.}}</li>{{end}}
+                    </ul>
+                    {{end}}
+                </div>
+            </article>
+            {{else}}
+            <p class="no-content">Projects coming soon.</p>
+            {{end}}
+        </div>
+    </div>
+</section>
+{{end}}

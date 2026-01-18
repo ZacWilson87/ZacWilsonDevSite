@@ -1,0 +1,17 @@
+{{template "layout" .}}
+
+{{define "title"}}{{.Title}}{{end}}
+
+{{define "content"}}
+<article class="post">
+    <div class="container">
+        <header>
+            <h1>{{.Title}}</h1>
+            {{if not .Date.IsZero}}<time>{{.Date.Format "January 2, 2006"}}</time>{{end}}
+        </header>
+        <div class="content">
+            {{.Body | safeHTML}}
+        </div>
+    </div>
+</article>
+{{end}}

@@ -1,0 +1,30 @@
+{{template "layout" .}}
+
+{{define "title"}}Work{{end}}
+
+{{define "content"}}
+<section class="page-header">
+    <div class="container">
+        <h1>Work</h1>
+        <p>Selected projects and contributions.</p>
+    </div>
+</section>
+
+<section class="projects">
+    <div class="container">
+        {{range .Projects}}
+        <article class="project-card">
+            <h2><a href="/work/{{.Slug}}">{{.Title}}</a></h2>
+            {{if .Status}}<span class="status">{{.Status}}</span>{{end}}
+            {{if .Tags}}
+            <ul class="tags">
+                {{range .Tags}}<li>{{.}}</li>{{end}}
+            </ul>
+            {{end}}
+        </article>
+        {{else}}
+        <p>Projects coming soon.</p>
+        {{end}}
+    </div>
+</section>
+{{end}}

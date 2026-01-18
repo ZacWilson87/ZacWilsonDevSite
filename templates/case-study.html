@@ -1,0 +1,22 @@
+{{template "layout" .}}
+
+{{define "title"}}{{.Title}}{{end}}
+
+{{define "content"}}
+<article class="case-study-detail">
+    <div class="container">
+        <header class="case-study-header">
+            <h1>{{.Title}}</h1>
+            {{if .Status}}<span class="status">{{.Status}}</span>{{end}}
+            {{if .Tags}}
+            <ul class="tags">
+                {{range .Tags}}<li>{{.}}</li>{{end}}
+            </ul>
+            {{end}}
+        </header>
+        <div class="content">
+            {{.Body | safeHTML}}
+        </div>
+    </div>
+</article>
+{{end}}
