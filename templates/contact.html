@@ -1,22 +1,56 @@
 {{template "layout" .}}
 
-{{define "title"}}Contact{{end}}
+{{define "title"}}Contact — Zac W{{end}}
+{{define "description"}}Get in touch with Zac Wilson for project inquiries or collaboration.{{end}}
 
 {{define "content"}}
-<section class="page-header">
+<section class="contact-hero">
     <div class="container">
-        <h1>Contact</h1>
+        <div class="contact-hero-grid">
+            <div class="contact-hero-main">
+                <span class="hero-label anim-fade" style="--delay: 0">Contact</span>
+                <h1 class="contact-title anim-fade" style="--delay: 1">Let's talk.</h1>
+            </div>
+            <div class="contact-hero-aside anim-fade" style="--delay: 2">
+                <p>Have a project, question, or just want to connect? I'm always open to interesting conversations.</p>
+            </div>
+        </div>
     </div>
 </section>
 
-<section class="contact-content">
+<section class="contact-methods">
     <div class="container">
-        <p>Get in touch for collaboration or opportunities.</p>
-        <ul class="contact-links">
-            <li><a href="mailto:hello@example.com">Email</a></li>
-            <li><a href="https://github.com/">GitHub</a></li>
-            <li><a href="https://linkedin.com/">LinkedIn</a></li>
-        </ul>
+        <div class="methods-grid">
+            <div class="contact-card anim-fade" style="--delay: 3">
+                <span class="contact-card-label">Email</span>
+                <span class="contact-card-value">zilson1987+devcontact<wbr>@gmail.com</span>
+                <span class="contact-card-hint">Best for project inquiries</span>
+                <span class="contact-card-arrow">→</span>
+            </div>
+
+            <a href="https://www.linkedin.com/in/zac-wilson87/" target="_blank" rel="noopener"
+                class="contact-card anim-fade" style="--delay: 4">
+                <span class="contact-card-label">LinkedIn</span>
+                <span class="contact-card-value">zac-wilson87</span>
+                <span class="contact-card-hint">Professional network</span>
+                <span class="contact-card-arrow">→</span>
+            </a>
+
+            <a href="https://github.com/ZacWilson87" target="_blank" rel="noopener" class="contact-card anim-fade"
+                style="--delay: 5">
+                <span class="contact-card-label">GitHub</span>
+                <span class="contact-card-value">ZacWilson87</span>
+                <span class="contact-card-hint">Projects</span>
+                <span class="contact-card-arrow">→</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="contact-note anim-fade" style="--delay: 6">
+    <div class="container">
+        <p>I typically respond within a day or two. If it's urgent, LinkedIn direct message or Email is the fastest
+            route.</p>
     </div>
 </section>
 {{end}}
