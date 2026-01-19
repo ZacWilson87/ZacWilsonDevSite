@@ -1,0 +1,150 @@
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 900px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+    }
+
+    .hero-aside {
+        max-width: 28rem;
+    }
+
+    .about-hero-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+    }
+
+    .bio-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+    }
+
+    .bio-sidebar {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: var(--space-xl);
+    }
+
+    .stack-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .values-list {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-hero-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+
+    .contact-card {
+        grid-template-columns: 6rem 1fr auto;
+    }
+}
+
+@media (max-width: 640px) {
+    :root {
+        --space-2xl: 4rem;
+        --space-3xl: 6rem;
+    }
+
+    h1 { font-size: 2rem; }
+
+    .site-header .container {
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+
+    .main-nav ul {
+        gap: var(--space-md);
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .home-hero {
+        padding: var(--space-2xl) 0;
+    }
+
+    .hero-title {
+        font-size: 2.25rem;
+    }
+
+    .hero-cta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hero-accent {
+        left: var(--space-md);
+        right: var(--space-md);
+    }
+
+    .intro-text {
+        font-size: 1.15rem;
+    }
+
+    .work-preview-item {
+        grid-template-columns: 2rem 1fr;
+        gap: var(--space-md);
+    }
+
+    .section-header {
+        flex-direction: column;
+        gap: var(--space-sm);
+        align-items: flex-start;
+    }
+
+    .about-name {
+        font-size: 2.25rem;
+    }
+
+    .about-quote {
+        font-size: 1rem;
+    }
+
+    .bio-lede {
+        font-size: 1.15rem;
+    }
+
+    .stack-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-text {
+        font-size: 1.25rem;
+    }
+
+    .contact-title {
+        font-size: 2.5rem;
+    }
+
+    .contact-card {
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto auto;
+    }
+
+    .contact-card-label {
+        grid-column: 1;
+        grid-row: 1;
+        margin-bottom: var(--space-xs);
+    }
+
+    .contact-card-value {
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .contact-card-hint {
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    .contact-card-arrow {
+        grid-column: 2;
+        grid-row: 1 / 4;
+    }
+}

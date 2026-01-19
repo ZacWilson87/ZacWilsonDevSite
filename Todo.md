@@ -6,10 +6,12 @@ Working task board for this project.
 
 ## Up Next
 
+- [] Combine the Work and Case Study logic to a unified page, 'Projects', where we will display both Work and Case Studies
+
 ## Completed
 
+- [x] Add copy-to-clipboard with toast for email contact card
 - [x] Add meta description tags to all page templates
-
 - [x] SeedGenius case study content
 - [x] Markdown-to-HTML rendering (goldmark)
 - [x] Theme system (light/dark mode)
