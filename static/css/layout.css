@@ -1,0 +1,90 @@
+/* Layout */
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+}
+
+/* Header */
+.site-header {
+    padding: var(--space-lg) 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.site-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: var(--color-text);
+}
+
+/* Navigation */
+.main-nav ul {
+    display: flex;
+    gap: var(--space-lg);
+    list-style: none;
+}
+
+.main-nav a {
+    font-family: var(--font-sans);
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
+.main-nav a:hover {
+    color: var(--color-text);
+}
+
+/* Footer */
+.site-footer {
+    padding: var(--space-sm) 0;
+    border-top: 1px solid var(--color-border);
+}
+
+.site-footer p {
+    font-family: var(--font-sans);
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
+/* Content */
+.content {
+    max-width: 42rem;
+}
+
+.content p {
+    margin-bottom: var(--space-md);
+}
+
+/* Legacy Hero (for other pages) */
+.hero {
+    padding: var(--space-xl) 0;
+}
+
+.hero h1 {
+    margin-bottom: var(--space-md);
+}
+
+.lead {
+    font-size: 1.25rem;
+    color: var(--color-text-muted);
+}
+
+/* Page Header */
+.page-header {
+    margin-bottom: var(--space-xl);
+}
+
+.page-header h1 {
+    margin-bottom: var(--space-sm);
+}
+
+.page-header p {
+    color: var(--color-text-muted);
+}
