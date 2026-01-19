@@ -1,0 +1,51 @@
+{{template "layout" .}}
+
+{{define "title"}}Projects{{end}}
+{{define "description"}}Selected projects, case studies, and contributions from Zac Wilson.{{end}}
+
+{{define "content"}}
+<section class="page-header">
+    <div class="container">
+        <h1>Projects</h1>
+        <p>Selected work and in-depth case studies.</p>
+    </div>
+</section>
+
+<section class="projects">
+    <div class="container">
+        {{if .WorkItems}}
+        <h2 class="section-label">Work</h2>
+        {{range .WorkItems}}
+        <article class="project-card">
+            <h3><a href="/projects/{{.Slug}}">{{.Title}}</a></h3>
+            {{if .Status}}<span class="status">{{.Status}}</span>{{end}}
+            {{if .Tags}}
+            <ul class="tags">
+                {{range .Tags}}<li>{{.}}</li>{{end}}
+            </ul>
+            {{end}}
+        </article>
+        {{end}}
+        {{end}}
+
+        {{if .CaseStudies}}
+        <h2 class="section-label">Case Studies</h2>
+        {{range .CaseStudies}}
+        <article class="project-card project-card--case-study">
+            <h3><a href="/projects/{{.Slug}}">{{.Title}}</a></h3>
+            <span class="type-badge">Case Study</span>
+            {{if .Tags}}
+            <ul class="tags">
+                {{range .Tags}}<li>{{.}}</li>{{end}}
+            </ul>
+            {{end}}
+        </article>
+        {{end}}
+        {{end}}
+
+        {{if and (not .WorkItems) (not .CaseStudies)}}
+        <p>Projects coming soon.</p>
+        {{end}}
+    </div>
+</section>
+{{end}}
