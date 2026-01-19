@@ -31,22 +31,21 @@ type Item struct {
 	Tags    []string
 	Body    string // rendered HTML
 	RawBody string // original markdown
+	Type    string // "work" or "case-study"
 }
 
 // Loader loads and caches content from markdown files
 type Loader struct {
-	basePath    string
-	mu          sync.RWMutex
-	projects    map[string]*Item
-	caseStudies map[string]*Item
+	basePath string
+	mu       sync.RWMutex
+	projects map[string]*Item // unified: all projects (work + case studies)
 }
 
 // NewLoader creates a new content loader
 func NewLoader(basePath string) *Loader {
 	return &Loader{
-		basePath:    basePath,
-		projects:    make(map[string]*Item),
-		caseStudies: make(map[string]*Item),
+		basePath: basePath,
+		projects: make(map[string]*Item),
 	}
 }
 
@@ -55,20 +54,20 @@ func (l *Loader) Load() error {
 	l.mu.Lock()
 	defer l.mu.Unlock()
 
-	// Load projects
-	if err := l.loadDir("projects", l.projects); err != nil {
+	// Load work items from projects directory
+	if err := l.loadDir("projects", "work"); err != nil {
 		return err
 	}
 
 	// Load case studies
-	if err := l.loadDir("case-studies", l.caseStudies); err != nil {
+	if err := l.loadDir("case-studies", "case-study"); err != nil {
 		return err
 	}
 
 	return nil
 }
 
-func (l *Loader) loadDir(dir string, dest map[string]*Item) error {
+func (l *Loader) loadDir(dir string, itemType string) error {
 	path := filepath.Join(l.basePath, dir)
 
 	entries, err := os.ReadDir(path)
@@ -89,7 +88,8 @@ func (l *Loader) loadDir(dir string, dest map[string]*Item) error {
 			return err
 		}
 
-		dest[item.Slug] = item
+		item.Type = itemType
+		l.projects[item.Slug] = item
 	}
 
 	return nil
@@ -166,7 +166,7 @@ func parseFrontmatter(data []byte) (frontmatter, []byte) {
 	return fm, body
 }
 
-// Projects returns all loaded projects
+// Projects returns all loaded projects (work + case studies), sorted by date descending
 func (l *Loader) Projects() []*Item {
 	l.mu.RLock()
 	defer l.mu.RUnlock()
@@ -175,6 +175,16 @@ func (l *Loader) Projects() []*Item {
 	for _, item := range l.projects {
 		items = append(items, item)
 	}
+
+	// Sort by date descending (newest first)
+	for i := 0; i < len(items)-1; i++ {
+		for j := i + 1; j < len(items); j++ {
+			if items[j].Date.After(items[i].Date) {
+				items[i], items[j] = items[j], items[i]
+			}
+		}
+	}
+
 	return items
 }
 
@@ -185,21 +195,26 @@ func (l *Loader) Project(slug string) *Item {
 	return l.projects[slug]
 }
 
-// CaseStudies returns all loaded case studies
-func (l *Loader) CaseStudies() []*Item {
+// ProjectsByType returns projects filtered by type ("work" or "case-study")
+func (l *Loader) ProjectsByType(itemType string) []*Item {
 	l.mu.RLock()
 	defer l.mu.RUnlock()
 
-	items := make([]*Item, 0, len(l.caseStudies))
-	for _, item := range l.caseStudies {
-		items = append(items, item)
+	var items []*Item
+	for _, item := range l.projects {
+		if item.Type == itemType {
+			items = append(items, item)
+		}
 	}
-	return items
-}
 
-// CaseStudy returns a single case study by slug
-func (l *Loader) CaseStudy(slug string) *Item {
-	l.mu.RLock()
-	defer l.mu.RUnlock()
-	return l.caseStudies[slug]
+	// Sort by date descending
+	for i := 0; i < len(items)-1; i++ {
+		for j := i + 1; j < len(items); j++ {
+			if items[j].Date.After(items[i].Date) {
+				items[i], items[j] = items[j], items[i]
+			}
+		}
+	}
+
+	return items
 }

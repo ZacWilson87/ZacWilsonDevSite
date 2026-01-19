@@ -1,7 +1,8 @@
 {{template "layout" .}}
 
 {{define "title"}}Zac W — Software Engineer{{end}}
-{{define "description"}}Software engineer building backend systems, APIs, and infrastructure. Pragmatic solutions over clever abstractions.{{end}}
+{{define "description"}}Software engineer building backend systems, APIs, and infrastructure. Pragmatic solutions over
+clever abstractions.{{end}}
 
 {{define "content"}}
 <section class="home-hero">
@@ -15,9 +16,10 @@
                 </h1>
             </div>
             <div class="hero-aside anim-fade" style="--delay: 2">
-                <p>Pragmatic solutions over clever abstractions. Clear code over complex architecture. Shipping over theorizing.</p>
+                <p>Pragmatic solutions over clever abstractions. Clear code over complex architecture. Shipping over
+                    theorizing.</p>
                 <div class="hero-cta">
-                    <a href="/work" class="btn-primary">View Work</a>
+                    <a href="/projects" class="btn-primary">View Work</a>
                     <a href="/about" class="btn-ghost">About Me</a>
                 </div>
             </div>
@@ -30,7 +32,8 @@
     <div class="container">
         <div class="intro-content">
             <h2 class="section-label">What I Do</h2>
-            <p class="intro-text">I design and build backend systems, APIs, and infrastructure. Twelve years of turning ambiguous requirements into reliable software—mostly in Go, Python, and TypeScript.</p>
+            <p class="intro-text">I design and full-stack systems, APIs, and infrastructure. Over five years of turning
+                ambiguous requirements into reliable software.</p>
         </div>
     </div>
 </section>
@@ -39,14 +42,14 @@
     <div class="container">
         <div class="section-header">
             <h2 class="section-label">Selected Work</h2>
-            <a href="/work" class="section-link">View all →</a>
+            <a href="/projects" class="section-link">View all →</a>
         </div>
         <div class="work-preview">
             {{range $i, $p := .FeaturedProjects}}
             <article class="work-preview-item">
                 <span class="work-number">0{{add $i 1}}</span>
                 <div class="work-preview-content">
-                    <h3><a href="/work/{{$p.Slug}}">{{$p.Title}}</a></h3>
+                    <h3><a href="/projects/{{$p.Slug}}">{{$p.Title}}</a></h3>
                     {{if $p.Tags}}
                     <ul class="work-tags">
                         {{range $p.Tags}}<li>{{.}}</li>{{end}}

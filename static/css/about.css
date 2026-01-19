@@ -3,7 +3,7 @@
    ===================================================== */
 
 .about-hero {
-    padding: var(--space-2xl) 0 var(--space-2xl);
+    padding: var(--space-xl) 0 var(--space-2xl);
     position: relative;
 }
 
@@ -49,7 +49,7 @@
 
 /* Bio Section */
 .about-bio {
-    padding: var(--space-2xl) 0;
+    padding: var(--space-xl) 0;
     background: var(--color-bg-subtle);
 }
 
@@ -110,7 +110,7 @@
 
 /* Stack Section */
 .about-stack {
-    padding: var(--space-2xl) 0;
+    padding: var(--space-xl) 0;
 }
 
 .stack-grid {
@@ -141,6 +141,7 @@
     font-size: 0.95rem;
     color: var(--color-text-muted);
     transition: color 0.2s ease;
+    padding: 0 var(--space-xs);
 }
 
 .stack-category li:hover {
@@ -155,7 +156,7 @@
 
 .values-list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, auto);
     gap: var(--space-xl);
 }
 

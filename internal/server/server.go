@@ -48,14 +48,29 @@ func (s *Server) Router() http.Handler {
 
 	// Routes
 	r.Get("/", s.handleHome)
-	r.Get("/work", s.handleWork)
-	r.Get("/work/{slug}", s.handleProject)
-	r.Get("/case-studies", s.handleCaseStudies)
-	r.Get("/case-studies/{slug}", s.handleCaseStudy)
+	r.Get("/projects", s.handleProjects)
+	r.Get("/projects/{slug}", s.handleProject)
 	r.Get("/about", s.handleAbout)
 	r.Get("/contact", s.handleContact)
 
+	// Redirects for old URLs
+	r.Get("/work", redirectTo("/projects"))
+	r.Get("/work/{slug}", s.redirectProjectSlug)
+	r.Get("/case-studies", redirectTo("/projects"))
+	r.Get("/case-studies/{slug}", s.redirectProjectSlug)
+
 	return r
+}
+
+func redirectTo(target string) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		http.Redirect(w, r, target, http.StatusMovedPermanently)
+	}
+}
+
+func (s *Server) redirectProjectSlug(w http.ResponseWriter, r *http.Request) {
+	slug := chi.URLParam(r, "slug")
+	http.Redirect(w, r, "/projects/"+slug, http.StatusMovedPermanently)
 }
 
 func (s *Server) handleHome(w http.ResponseWriter, r *http.Request) {
@@ -74,11 +89,15 @@ func (s *Server) handleHome(w http.ResponseWriter, r *http.Request) {
 	s.render(w, "home.html", data)
 }
 
-func (s *Server) handleWork(w http.ResponseWriter, r *http.Request) {
+func (s *Server) handleProjects(w http.ResponseWriter, r *http.Request) {
+	workItems := s.loader.ProjectsByType("work")
+	caseStudies := s.loader.ProjectsByType("case-study")
+
 	data := map[string]any{
-		"Projects": s.loader.Projects(),
+		"WorkItems":   workItems,
+		"CaseStudies": caseStudies,
 	}
-	s.render(w, "work.html", data)
+	s.render(w, "projects.html", data)
 }
 
 func (s *Server) handleProject(w http.ResponseWriter, r *http.Request) {
@@ -89,23 +108,6 @@ func (s *Server) handleProject(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	s.render(w, "project.html", project)
-}
-
-func (s *Server) handleCaseStudies(w http.ResponseWriter, r *http.Request) {
-	data := map[string]any{
-		"CaseStudies": s.loader.CaseStudies(),
-	}
-	s.render(w, "case-studies.html", data)
-}
-
-func (s *Server) handleCaseStudy(w http.ResponseWriter, r *http.Request) {
-	slug := chi.URLParam(r, "slug")
-	study := s.loader.CaseStudy(slug)
-	if study == nil {
-		http.NotFound(w, r)
-		return
-	}
-	s.render(w, "case-study.html", study)
 }
 
 func (s *Server) handleAbout(w http.ResponseWriter, r *http.Request) {

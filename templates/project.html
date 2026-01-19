@@ -1,12 +1,13 @@
 {{template "layout" .}}
 
 {{define "title"}}{{.Title}}{{end}}
-{{define "description"}}Project details and overview.{{end}}
+{{define "description"}}{{if eq .Type "case-study"}}An in-depth case study.{{else}}Project details and overview.{{end}}{{end}}
 
 {{define "content"}}
-<article class="project-detail">
+<article class="project-detail {{if eq .Type "case-study"}}project-detail--case-study{{end}}">
     <div class="container">
         <header>
+            {{if eq .Type "case-study"}}<span class="type-badge">Case Study</span>{{end}}
             <h1>{{.Title}}</h1>
             {{if .Status}}<span class="status">{{.Status}}</span>{{end}}
             {{if .Tags}}
