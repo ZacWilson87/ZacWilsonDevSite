@@ -1,7 +1,7 @@
 /* Layout */
 .container {
     max-width: var(--max-width);
-    margin: var(--space-lg) auto 0;
+    margin: 0 auto;
     padding: 0 var(--space-lg);
 }
 
@@ -53,7 +53,7 @@
     font-size: 0.9rem;
 }
 
-/* Content (prose styling for rendered markdown) */
+/* Content (Markdown) */
 .content {
     max-width: 42rem;
 }
@@ -62,6 +62,7 @@
     margin-bottom: var(--space-md);
 }
 
+/* Headings in content */
 .content h2 {
     margin-top: var(--space-xl);
     margin-bottom: var(--space-md);
@@ -72,11 +73,17 @@
     margin-bottom: var(--space-sm);
 }
 
+.content h4 {
+    margin-top: var(--space-md);
+    margin-bottom: var(--space-sm);
+    font-size: 1.1rem;
+}
+
 /* Lists */
 .content ul,
 .content ol {
     margin-bottom: var(--space-md);
-    padding-left: 1.5rem;
+    padding-left: var(--space-lg);
 }
 
 .content ul {
@@ -88,53 +95,87 @@
 }
 
 .content li {
-    margin-bottom: var(--space-xs);
-    line-height: 1.6;
+    margin-bottom: var(--space-sm);
+    padding-left: var(--space-xs);
 }
 
-.content li > ul,
-.content li > ol {
-    margin-top: var(--space-xs);
+.content li::marker {
+    color: var(--color-text-muted);
+}
+
+/* Nested lists */
+.content ul ul,
+.content ol ol,
+.content ul ol,
+.content ol ul {
+    margin-top: var(--space-sm);
     margin-bottom: 0;
-}
-
-/* Inline code */
-.content code {
-    font-family: var(--font-mono);
-    font-size: 0.9em;
-    background: var(--color-bg-subtle);
-    padding: 0.15em 0.4em;
-    border-radius: 4px;
 }
 
 /* Code blocks */
 .content pre {
-    margin-bottom: var(--space-md);
-    padding: var(--space-md);
     background: var(--color-bg-subtle);
-    border-radius: 6px;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: var(--space-md);
+    margin-bottom: var(--space-md);
     overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    line-height: 1.5;
 }
 
 .content pre code {
     background: none;
     padding: 0;
-    font-size: 0.875rem;
-    line-height: 1.6;
+    border: none;
+    font-size: inherit;
+}
+
+/* Inline code */
+.content code {
+    background: var(--color-bg-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: 0.25rem;
+    padding: 0.125rem 0.375rem;
+    font-family: var(--font-mono);
+    font-size: 0.875em;
 }
 
 /* Blockquotes */
 .content blockquote {
-    margin: var(--space-md) 0;
-    padding-left: var(--space-md);
     border-left: 3px solid var(--color-accent);
+    padding-left: var(--space-md);
+    margin: var(--space-md) 0;
     color: var(--color-text-muted);
     font-style: italic;
 }
 
-/* Strong/bold within lists */
+.content blockquote p:last-child {
+    margin-bottom: 0;
+}
+
+/* Horizontal rules */
+.content hr {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: var(--space-xl) 0;
+}
+
+/* Strong and emphasis */
 .content strong {
     font-weight: 600;
+}
+
+/* Links in content */
+.content a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.content a:hover {
+    opacity: 1;
+    text-decoration-color: var(--color-accent);
 }
 
 /* Legacy Hero (for other pages) */

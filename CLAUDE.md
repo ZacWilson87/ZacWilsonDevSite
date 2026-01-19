@@ -35,10 +35,10 @@ This is a server-rendered personal developer site built with Go. No database—a
 
 ### Content Model
 
-Three content types stored as markdown in `content/`:
+Two content types stored as markdown in `content/`:
 
-- `content/projects/*.md` → `/work` and `/work/{slug}`
-- `content/case-studies/*.md` → `/case-studies`
+- `content/projects/*.md` → `/projects` and `/projects/{slug}`
+- `content/case-studies/*.md` → `/projects` and `/case-study/{slug}`
 
 Filename (without .md) becomes the URL slug. Frontmatter supports `title`, `date`, `status`, and `tags` fields.
 

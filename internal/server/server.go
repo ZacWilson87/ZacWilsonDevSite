@@ -21,6 +21,7 @@ type Server struct {
 var funcMap = template.FuncMap{
 	"add":      func(a, b int) int { return a + b },
 	"safeHTML": func(s string) template.HTML { return template.HTML(s) },
+	"year":     func() int { return time.Now().Year() },
 }
 
 // New creates a new server instance
@@ -49,15 +50,22 @@ func (s *Server) Router() http.Handler {
 	// Routes
 	r.Get("/", s.handleHome)
 	r.Get("/projects", s.handleProjects)
-	r.Get("/projects/{slug}", s.handleProject)
+	r.Get("/projects/{slug}", s.handleProjectDetail)
+	r.Get("/case-study/{slug}", s.handleCaseStudyDetail)
 	r.Get("/about", s.handleAbout)
 	r.Get("/contact", s.handleContact)
 
-	// Redirects for old URLs
+	// Legacy redirects
 	r.Get("/work", redirectTo("/projects"))
-	r.Get("/work/{slug}", s.redirectProjectSlug)
+	r.Get("/work/{slug}", func(w http.ResponseWriter, r *http.Request) {
+		slug := chi.URLParam(r, "slug")
+		http.Redirect(w, r, "/projects/"+slug, http.StatusMovedPermanently)
+	})
 	r.Get("/case-studies", redirectTo("/projects"))
-	r.Get("/case-studies/{slug}", s.redirectProjectSlug)
+	r.Get("/case-studies/{slug}", func(w http.ResponseWriter, r *http.Request) {
+		slug := chi.URLParam(r, "slug")
+		http.Redirect(w, r, "/case-study/"+slug, http.StatusMovedPermanently)
+	})
 
 	return r
 }
@@ -66,11 +74,6 @@ func redirectTo(target string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, target, http.StatusMovedPermanently)
 	}
-}
-
-func (s *Server) redirectProjectSlug(w http.ResponseWriter, r *http.Request) {
-	slug := chi.URLParam(r, "slug")
-	http.Redirect(w, r, "/projects/"+slug, http.StatusMovedPermanently)
 }
 
 func (s *Server) handleHome(w http.ResponseWriter, r *http.Request) {
@@ -90,17 +93,14 @@ func (s *Server) handleHome(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *Server) handleProjects(w http.ResponseWriter, r *http.Request) {
-	workItems := s.loader.ProjectsByType("work")
-	caseStudies := s.loader.ProjectsByType("case-study")
-
 	data := map[string]any{
-		"WorkItems":   workItems,
-		"CaseStudies": caseStudies,
+		"Projects":    s.loader.Projects(),
+		"CaseStudies": s.loader.CaseStudies(),
 	}
 	s.render(w, "projects.html", data)
 }
 
-func (s *Server) handleProject(w http.ResponseWriter, r *http.Request) {
+func (s *Server) handleProjectDetail(w http.ResponseWriter, r *http.Request) {
 	slug := chi.URLParam(r, "slug")
 	project := s.loader.Project(slug)
 	if project == nil {
@@ -108,6 +108,16 @@ func (s *Server) handleProject(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	s.render(w, "project.html", project)
+}
+
+func (s *Server) handleCaseStudyDetail(w http.ResponseWriter, r *http.Request) {
+	slug := chi.URLParam(r, "slug")
+	study := s.loader.CaseStudy(slug)
+	if study == nil {
+		http.NotFound(w, r)
+		return
+	}
+	s.render(w, "case-study.html", study)
 }
 
 func (s *Server) handleAbout(w http.ResponseWriter, r *http.Request) {

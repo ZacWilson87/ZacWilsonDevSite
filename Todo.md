@@ -9,9 +9,7 @@ Working task board for this project.
 ## Completed
 
 - [x] Fix markdown prose styling (lists, code blocks, blockquotes)
-
 - [x] Combine Work and Case Studies into unified Projects page
-
 - [x] Add copy-to-clipboard with toast for email contact card
 - [x] Add meta description tags to all page templates
 - [x] SeedGenius case study content
