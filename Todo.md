@@ -8,6 +8,8 @@ Working task board for this project.
 
 ## Completed
 
+- [x] Add comprehensive README with setup and architecture docs
+
 - [x] Fix markdown prose styling (lists, code blocks, blockquotes)
 - [x] Combine Work and Case Studies into unified Projects page
 - [x] Add copy-to-clipboard with toast for email contact card
